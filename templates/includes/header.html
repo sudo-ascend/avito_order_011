@@ -1,0 +1,47 @@
+<header class="site-header" id="top">
+  <div class="container header-inner">
+    <a class="brand" href="#top" aria-label="{{ site_settings.site_name }} — на главную">
+      <span class="brand-mark" aria-hidden="true">
+        {% if site_settings.logo %}
+          <img src="{{ site_settings.logo.url }}" alt="">
+        {% else %}
+          <span class="brand-fallback">{{ site_settings.site_name|slice:":1" }}</span>
+        {% endif %}
+      </span>
+      <span class="brand-text">
+        <strong>Точка</strong>
+        <small>дизайна и печати</small>
+      </span>
+    </a>
+
+    <nav class="desktop-nav" aria-label="Основная навигация">
+      <a href="#services">Услуги</a>
+      <a href="#gift">Подарить момент</a>
+      <a href="#about">О нас</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+
+    <button class="button button-small desktop-cta" type="button" data-open-form>Оставить заявку</button>
+    <button class="menu-toggle" type="button" aria-label="Открыть меню" aria-controls="mobile-menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="menu-overlay" id="menu-overlay" hidden></div>
+<aside class="mobile-menu" id="mobile-menu" aria-label="Мобильное меню" aria-hidden="true">
+  <div class="mobile-menu-head">
+    <span class="menu-kicker">Навигация</span>
+    <button class="icon-button close-menu" type="button" aria-label="Закрыть меню">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
+    </button>
+  </div>
+  <nav class="mobile-nav">
+    <a href="#services">Услуги <span>01</span></a>
+    <a href="#gift">Подарить момент <span>02</span></a>
+    <a href="#about">О нас <span>03</span></a>
+    <a href="#contacts">Контакты <span>04</span></a>
+  </nav>
+  <button class="button button-wide" type="button" data-open-form>Оставить заявку</button>
+  <p class="menu-note">Идея начинается с разговора.</p>
+</aside>

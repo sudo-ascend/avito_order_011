@@ -1,0 +1,84 @@
+<section class="modal" id="request-modal" aria-labelledby="request-modal-title" aria-modal="true" role="dialog" hidden>
+  <div class="modal-panel">
+    <div class="modal-head">
+      <div>
+        <p class="eyebrow">Новая идея</p>
+        <h2 id="request-modal-title">{{ home_settings.form_title }}</h2>
+      </div>
+      <button class="icon-button close-modal" type="button" aria-label="Закрыть форму">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+    <p class="modal-lead">{{ home_settings.form_text }}</p>
+
+    <form
+      id="request-form"
+      action="{% url 'submit_application' %}"
+      method="post"
+      enctype="multipart/form-data"
+      data-application-form
+      data-application-endpoint="{% url 'submit_application' %}"
+      novalidate
+    >
+      {% csrf_token %}
+      {{ form.service_name }}
+      {{ form.consent }}
+      {{ form.website }}
+      <div class="form-grid">
+        <div class="field">
+          <label for="request-name">Ваше имя <span aria-hidden="true">*</span></label>
+          {{ form.name }}
+          <p class="field-error" data-error-for="name">{{ form.name.errors|striptags }}</p>
+        </div>
+        <div class="field">
+          <label for="request-phone">Телефон <span aria-hidden="true">*</span></label>
+          {{ form.phone }}
+          <p class="field-error" data-error-for="phone">{{ form.phone.errors|striptags }}</p>
+        </div>
+        <div class="field">
+          <label for="request-email">Email <span aria-hidden="true">*</span></label>
+          {{ form.email }}
+          <p class="field-error" data-error-for="email">{{ form.email.errors|striptags }}</p>
+        </div>
+        <div class="field">
+          <label for="request-service">Интересующая услуга <span aria-hidden="true">*</span></label>
+          {{ form.service }}
+          <p class="field-error" data-error-for="service">{{ form.service.errors|striptags }}</p>
+        </div>
+        <div class="field field-full">
+          <label for="request-comment">Комментарий</label>
+          {{ form.comment }}
+          <p class="field-error" data-error-for="comment">{{ form.comment.errors|striptags }}</p>
+        </div>
+        <div class="field field-full">
+          <label for="request-file">Фото или макет <span class="field-optional">необязательно</span></label>
+          <div class="file-control">
+            {{ form.file }}
+            <label for="request-file">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5M5 13v5a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5"/></svg>
+              Прикрепить файл
+            </label>
+            <span id="file-name">Файл не выбран</span>
+          </div>
+          <p class="field-error" data-error-for="file">{{ form.file.errors|striptags }}</p>
+        </div>
+      </div>
+      {% if form.non_field_errors %}
+        <p class="form-errors">{{ form.non_field_errors|striptags }}</p>
+      {% endif %}
+      <div class="form-actions">
+        <button class="button" type="submit">{{ home_settings.form_submit_label }} <span class="button-arrow" aria-hidden="true">↗</span></button>
+        <p>Нажимая кнопку, вы подтверждаете согласие на обработку данных.</p>
+      </div>
+    </form>
+
+    <div class="form-success" id="form-success" hidden>
+      <span class="success-icon">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="m7 16 6 6 12-13"/></svg>
+      </span>
+      <h3>{{ home_settings.success_title }}</h3>
+      <p>{{ home_settings.success_text }}</p>
+      <button class="text-link" type="button" data-close-modal>Вернуться к сайту <span>→</span></button>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,26 @@
+{% load static core_tags %}
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="{% block meta_description %}{{ home_settings.seo_description|default:home_settings.hero_lead|default:site_settings.footer_brand_text|striptags }}{% endblock %}">
+  <title>{% block title %}{{ home_settings.seo_title|default:site_settings.site_name }}{% endblock %}</title>
+  {% if site_settings.favicon %}
+  <link rel="icon" href="{{ site_settings.favicon.url }}" sizes="any">
+  {% else %}
+  <link rel="icon" href="{% static 'favicon.ico' %}" sizes="any">
+  {% endif %}
+  <link rel="stylesheet" href="{% static 'project/site.css' %}">
+  {% block extra_head %}{% endblock %}
+</head>
+<body class="{{ body_class|default:'page' }}">
+  <a class="skip-link" href="#main-content">Перейти к содержанию</a>
+  {% include "includes/header.html" %}
+  {% block content %}{% endblock %}
+  {% include "includes/footer.html" %}
+  {% block after_footer %}{% endblock %}
+  <script src="{% static 'js/main.js' %}" defer></script>
+  {% block extra_scripts %}{% endblock %}
+</body>
+</html>

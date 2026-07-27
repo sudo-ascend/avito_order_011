@@ -1,0 +1,16 @@
+<section class="modal modal-policy" id="policy-modal" aria-labelledby="policy-title" aria-modal="true" role="dialog" hidden>
+  <div class="modal-panel">
+    <div class="modal-head">
+      <div>
+        <p class="eyebrow">Информация</p>
+        <h2 id="policy-title">Политика конфиденциальности</h2>
+      </div>
+      <button class="icon-button close-modal" type="button" aria-label="Закрыть">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+    <div class="policy-text">
+      {{ site_settings.policy_text|linebreaksbr }}
+    </div>
+  </div>
+</section>

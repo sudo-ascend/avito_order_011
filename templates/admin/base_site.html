@@ -1,0 +1,52 @@
+{% extends "admin/base.html" %}
+{% load static i18n %}
+
+{% block title %}{{ site_settings.site_name }} | Администрирование{% endblock %}
+
+{% block dark-mode-vars %}{% endblock %}
+
+{% block extrastyle %}
+  {{ block.super }}
+  <link rel="icon" href="{% if site_settings.favicon %}{{ site_settings.favicon.url }}{% else %}{% static 'favicon.ico' %}{% endif %}" sizes="any">
+  <link rel="stylesheet" href="{% static 'admin_custom/admin.css' %}">
+{% endblock %}
+
+{% block branding %}
+  <h1 id="site-name">
+    <a href="{% url 'admin:index' %}">
+      <img src="{% static 'favicon.ico' %}" alt="" aria-hidden="true" width="20" height="20">
+      <span>{{ site_settings.site_name }}</span>
+    </a>
+  </h1>
+{% endblock %}
+
+{% block usertools %}
+  {% if has_permission %}
+    <div id="user-tools">
+      {% block welcome-msg %}
+        {% translate 'Welcome,' %}
+        <strong>{% firstof user.get_short_name user.get_username %}</strong>.
+      {% endblock %}
+      {% block userlinks %}
+        {% if site_url %}
+          <a href="{{ site_url }}">{% translate 'View site' %}</a> /
+        {% endif %}
+        {% if user.is_active and user.is_staff %}
+          {% url 'django-admindocs-docroot' as docsroot %}
+          {% if docsroot %}
+            <a href="{{ docsroot }}">{% translate 'Documentation' %}</a> /
+          {% endif %}
+        {% endif %}
+        {% if user.has_usable_password %}
+          <a href="{% url 'admin:password_change' %}">{% translate 'Change password' %}</a> /
+        {% endif %}
+        <form id="logout-form" method="post" action="{% url 'admin:logout' %}">
+          {% csrf_token %}
+          <button type="submit">{% translate 'Log out' %}</button>
+        </form>
+      {% endblock %}
+    </div>
+  {% endif %}
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

@@ -1,0 +1,41 @@
+<footer class="site-footer" id="contacts">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="#top">
+        <span class="brand-mark" aria-hidden="true">
+          {% if site_settings.logo %}
+            <img src="{{ site_settings.logo.url }}" alt="">
+          {% else %}
+            <span class="brand-fallback">{{ site_settings.site_name|slice:":1" }}</span>
+          {% endif %}
+        </span>
+        <span class="brand-text">
+          <strong>Точка</strong>
+          <small>дизайна и печати</small>
+        </span>
+      </a>
+      <p>{{ site_settings.footer_brand_text|linebreaksbr }}</p>
+    </div>
+
+    <div class="footer-links">
+      <p class="footer-label">На связи</p>
+      {% if site_settings.email %}<a href="mailto:{{ site_settings.email }}">{{ site_settings.email }}</a>{% endif %}
+      {% if site_settings.max_url %}<a href="{{ site_settings.max_url }}" target="_blank" rel="noopener noreferrer">Канал в MAX <span>↗</span></a>{% endif %}
+      {% if site_settings.telegram_url %}<a href="{{ site_settings.telegram_url }}" target="_blank" rel="noopener noreferrer">Telegram <span>↗</span></a>{% endif %}
+      {% if site_settings.phone %}<a href="{{ site_settings.phone_href }}">{{ site_settings.phone }}</a>{% endif %}
+    </div>
+
+    <div class="footer-links">
+      <p class="footer-label">Информация</p>
+      <button class="footer-button" type="button" data-open-policy>Политика конфиденциальности</button>
+    </div>
+
+    <button class="to-top" type="button" aria-label="Вернуться наверх" data-to-top>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 18V6m0 0L7 11m5-5 5 5"/></svg>
+    </button>
+  </div>
+  <div class="container footer-bottom">
+    <span>© <span id="current-year"></span> {{ site_settings.site_name }}</span>
+    <span>{{ site_settings.footer_note }}</span>
+  </div>
+</footer>

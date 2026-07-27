@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="ru">
+<body style="font-family: Arial, sans-serif; color: #201813; background: #f7f2eb; padding: 24px;">
+  <div style="max-width: 640px; margin: 0 auto; background: #fffaf4; border: 1px solid #eadfd3; border-radius: 20px; padding: 28px;">
+    <h1 style="margin: 0 0 16px; font-size: 28px;">Новая заявка с сайта {{ site_name }}</h1>
+    <p><strong>Имя:</strong> {{ application.name }}</p>
+    <p><strong>Телефон:</strong> {{ application.phone }}</p>
+    <p><strong>Email:</strong> {{ application.email }}</p>
+    <p><strong>Услуга:</strong> {{ application.display_service }}</p>
+    {% if application.comment %}<p><strong>Комментарий:</strong><br>{{ application.comment|linebreaksbr }}</p>{% endif %}
+    {% if application.file %}<p><strong>Файл:</strong> {{ application.file.name }}</p>{% endif %}
+    <p><strong>Источник:</strong> {{ application.source_url|default:"-" }}</p>
+    <hr style="border: 0; border-top: 1px solid #eadfd3; margin: 24px 0;">
+    <p style="margin: 0;">Контакты для ответа: {{ contact_email }}{% if contact_phone %}, {{ contact_phone }}{% endif %}</p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Ошибка безопасности{% endblock %}
+
+{% block content %}
+<main id="main-content">
+  <section class="section">
+    <div class="container">
+      <div class="final-cta-inner reveal" style="max-width: 720px; margin: 0 auto;">
+        <p class="eyebrow">Ошибка 403</p>
+        <h1>Сессия устарела или форма была открыта слишком долго.</h1>
+        <p>Обновите страницу и попробуйте отправить заявку еще раз.</p>
+        {% if reason %}<p class="product-note">{{ reason }}</p>{% endif %}
+        <a class="button" href="{% url 'home' %}">Вернуться на сайт</a>
+      </div>
+    </div>
+  </section>
+</main>
+{% endblock %}
